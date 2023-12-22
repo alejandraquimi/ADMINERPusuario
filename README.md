@@ -57,3 +57,8 @@ En el frontend al implementar react se usó una arquitectura basada en component
 - Como último punto, en estas últimas horas he investigado que se puede implementar react ClientApp dentro de un proyecto de c# .net, me pareció algo interesante y lo implementaría con el fin de obtener más conocimientos sobre el tema. Además, he leído que tiene algunos beneficios como comunicación eficiente, desarrollo rápido, la seguridad, despliegue sencillo.
 
 ## Imágenes de mi proyecto:
+![Login](https://github.com/alejandraquimi/ADMINERPusuario/tree/master/frontend/public/login.jpg)
+![CrearU](https://github.com/alejandraquimi/ADMINERPusuario/tree/master/frontend/public/crearU.jpg)
+![EditarU](https://github.com/alejandraquimi/ADMINERPusuario/tree/master/frontend/public/editarU.jpg)
+![ConsultarU](https://github.com/alejandraquimi/ADMINERPusuario/tree/master/frontend/public/consultarU.jpg)
+
