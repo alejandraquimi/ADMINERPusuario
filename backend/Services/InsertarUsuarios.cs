@@ -1,13 +1,25 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.CodeAnalysis.CSharp.Scripting;
-using Microsoft.CodeAnalysis.Scripting;
-namespace backend.Services;
-public class ScriptExecutor
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Threading.Tasks;
+using backend.Models;
+
+namespace backend.Services
 {
+    public class ScriptExecutor
+    {
+     private readonly IServiceScopeFactory _serviceScopeFactory;
+
+    public ScriptExecutor(IServiceScopeFactory serviceScopeFactory)
+    {
+        _serviceScopeFactory = serviceScopeFactory;
+    }
+
     public async Task ExecuteScript()
     {
-        using var dbContext = new BackendDbContext();
-        try
+        using var scope = _serviceScopeFactory.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<BackendDbContext>();
+
+                   try
         {
             var nuevoRegistro = new Usuario
             {
@@ -42,5 +54,6 @@ public class ScriptExecutor
                 Console.WriteLine($"Error al agregar el registro: {ex.Message}");
         }     
 
+        }
     }
 }

@@ -16,7 +16,6 @@ const Login = () => {
         contrasenaHash: password,
       });
 
-      // Redirigir a la página de inicio si la autenticación es exitosa
       navigate("/home");
     } catch (error) {
       let errorMessage = error.message;
@@ -41,25 +40,25 @@ const Login = () => {
         }}
       />
       <h2>Login</h2>
-      <form>
-        <label>
-          Correo:
+      <form className="login-form">
+        <div className="form-group">
+          <label htmlFor="email">Correo:</label>
           <input
             type="text"
+            id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </label>
-        <br />
-        <label>
-          Contraseña:
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Contraseña:</label>
           <input
             type="password"
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </label>
-        <br />
+        </div>
         <button className="button-login" type="button" onClick={handleLogin}>
           Iniciar Sesión
         </button>

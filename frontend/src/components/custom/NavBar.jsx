@@ -1,9 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ options }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+
+    navigate("/login");
+  };
   const handleOptionClick = (option) => {
+    if (option.title === "Cerrar Sesión") {
+      handleLogout();
+    }
     setSelectedOption(option);
   };
 

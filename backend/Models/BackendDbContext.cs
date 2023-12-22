@@ -4,10 +4,24 @@ namespace backend.Models
 {
     public class BackendDbContext : DbContext
     {
+        private readonly IConfiguration _configuration;
+
+        public BackendDbContext(DbContextOptions<BackendDbContext> options, IConfiguration configuration)
+                : base(options)
+            {
+                _configuration = configuration;
+            }
+
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Contacto> Contactos { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=ALEJANDRA\\MSSQLSERVER01;Database=test2;Trusted_Connection=True;TrustServerCertificate=True;");
+
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            {
+                if (!optionsBuilder.IsConfigured)
+                {
+                    optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+                }
+            }
 
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../components/custom/NavBar";
 import CrearUsuario from "../../components/usuario/CreacionUsuario";
 import ReporteUsuario from "../../components/reporte/ReporteUsuario";
@@ -9,10 +9,13 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { decodeToken } from "../../services/loginService";
 import { setUserInfo } from "../../redux/authSlice";
 import { setContactos } from "../../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const [access, setAccess] = useState(false);
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
-  const infor = useAppSelector((state) => state.auth.userInfo);
 
   const opciones = [
     { title: "Crear Usuario", children: <CrearUsuario editar={false} /> },
@@ -22,7 +25,10 @@ const Home = () => {
       children: <ReporteUsuario />,
     },
     { title: "Mostrar tus Contactos", children: <ReporteContacto /> },
-    { title: "Cerrar Sesión", children: "Contenido de la opción 3" },
+    {
+      title: "Cerrar Sesión",
+      children: "Contenido de la opción 3",
+    },
   ];
 
   useEffect(() => {
@@ -30,6 +36,7 @@ const Home = () => {
       try {
         const decoded = decodeToken();
         if (decoded != null) {
+          setAccess(true);
           const response = await getUsuarioByquery({ idUsuario: decoded });
           if (response.length > 0) {
             const contactos = response[0].usuariosContactos;

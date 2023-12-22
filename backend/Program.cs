@@ -73,21 +73,24 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddSingleton<IPasswordHasher, BCryptPasswordHasher>();
 
 
-builder.Services.AddDbContext<BackendDbContext>();
- 
-builder.Services.AddSingleton<ScriptExecutor>();
-
-
+builder.Services.AddDbContext<BackendDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<ScriptExecutor>();
+   
 
 var app = builder.Build();
 
+using var scope = app.Services.CreateScope();
+var serviceProvider = scope.ServiceProvider;
+var scriptExecutor = serviceProvider.GetRequiredService<ScriptExecutor>();
+
+await scriptExecutor.ExecuteScript();
+
 string? DevelopmentIp = app.Configuration["DevelopmentIp"];
 string? ProductionDomain = app.Configuration["ProductionDomain"];
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -122,12 +125,10 @@ else
 }
 
 
-var scriptExecutor = app.Services.GetRequiredService<ScriptExecutor>();
-
-await scriptExecutor.ExecuteScript();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
-
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
 app.Run();

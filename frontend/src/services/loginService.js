@@ -7,8 +7,10 @@ export async function postlogin(params) {
   try {
     const response = await axiosInstance.post("/Login/Athetication", params);
     const token = response.data.token;
+    localStorage.setItem("accessToken", token);
 
-    axiosInstance.updateToken(token);
+    await axiosInstance.updateToken(token);
+    const savedToken = localStorage.getItem("accessToken");
 
     return response.data;
   } catch (error) {

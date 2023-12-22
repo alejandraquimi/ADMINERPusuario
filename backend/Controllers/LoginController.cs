@@ -50,7 +50,7 @@ namespace ESPOL_Alert.Controllers.Authentication
             var credecs=new SigningCredentials(key,SecurityAlgorithms.HmacSha256Signature);
             var seecurityToken=new JwtSecurityToken(
                 claims:claims,
-                expires:DateTime.Now.AddMinutes(6000),
+                expires:DateTime.Now.AddMinutes(60000),
                 signingCredentials:credecs
             );
             string token=new JwtSecurityTokenHandler().WriteToken(seecurityToken);

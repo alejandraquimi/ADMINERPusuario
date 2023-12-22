@@ -41,3 +41,20 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form {
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  margin-right: 10px;
+}
