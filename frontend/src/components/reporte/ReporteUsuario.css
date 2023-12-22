@@ -1,0 +1,50 @@
+.reporte-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.accion-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.accion-btn.editar {
+  color: #3498db;
+}
+
+.accion-btn.eliminar {
+  color: #e74c3c;
+}
+
+.barra-busqueda {
+  display: flex;
+}
+
+.barra-busqueda input {
+  margin-right: 5px;
+  flex: 1;
+}
+
+.barra-busqueda button {
+  vertical-align: top;
+}

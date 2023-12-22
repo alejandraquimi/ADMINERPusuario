@@ -1,0 +1,39 @@
+.crear-usuario-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between; /* Alinea los elementos a la izquierda y derecha */
+  justify-content: space-between; /* Alinea los elementos a la izquierda y derecha */
+  width: 300px; /* Ajusta el ancho del formulario según tus necesidades */
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input {
+  padding: 8px;
+}
+
+.guardar-button {
+  background-color: green;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
