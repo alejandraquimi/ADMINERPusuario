@@ -24,7 +24,7 @@ Luego de seguir lo pasos previos ejecutamos lo siguiente:
 cd backend
 dotnet restore
 dotnet ef migrations add GenerarMigraciones
-dotnet ef database
+dotnet ef database update
 dotnet run
 ```
 
